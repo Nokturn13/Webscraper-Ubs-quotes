@@ -5,7 +5,7 @@ import time
 import datetime
 #In case the programm stops running, you should change the "Lex" value to the Number of the last box.
 #Ex. the programm wrote untill the box A20 in excel, change "Lex" to 20 and rerun the program. 
-lex = 1
+
 stop = False
 
 def main(nex):
@@ -23,12 +23,21 @@ def main(nex):
     ws = wb.active
     ws['A'+nex].value = output
     wb.save('quotes.xlsx')
+    
+    textfile = open("A-num.txt", "r")
+    txtplus1 = int(textfile.read())+1
+    textfile.close
+    textfile= open("A-num.txt", "w")
+    textfile.write(str(txtplus1))
+    textfile.close
 
 #Programm loop  
 while stop == False :
     rn = str(datetime.datetime.now().time())
     
-    if rn >= "09:00:00.000000" and rn <= "09:00:02.000000":
+    if rn >= "20:07:00.000000" and rn <= "20:07:02.000000":
         time.sleep(2)
-        lex = lex + 1
+        textfile = open("A-num.txt", "r")
+        lex = textfile.read()
+        textfile.close
         main(str(lex))
