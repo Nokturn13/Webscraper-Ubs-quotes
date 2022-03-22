@@ -35,7 +35,7 @@ def main(nex):
 while stop == False :
     rn = str(datetime.datetime.now().time())
     
-    if rn >= "20:07:00.000000" and rn <= "20:07:02.000000":
+    if rn >= "09:00:00.000000" and rn <= "09:00:02.000000":
         time.sleep(2)
         textfile = open("A-num.txt", "r")
         lex = textfile.read()
