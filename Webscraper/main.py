@@ -3,12 +3,11 @@ from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 import time
 import datetime
-#In case the programm stops running, you should change the "Lex" value to the Number of the last box.
-#Ex. the programm wrote untill the box A20 in excel, change "Lex" to 20 and rerun the program. 
 
 stop = False
 
 def main(nex):
+    
     #Imports data from Google Finance
     req = requests.get("https://www.google.com/finance/quote/UBSG:SWX")
     soup = BeautifulSoup(req.content, "html.parser" )
@@ -24,6 +23,7 @@ def main(nex):
     ws['A'+nex].value = output
     wb.save('quotes.xlsx')
     
+    #Writes to the text file
     textfile = open("A-num.txt", "r")
     txtplus1 = int(textfile.read())+1
     textfile.close
